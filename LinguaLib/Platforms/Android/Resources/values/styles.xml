@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+	<style name="Maui.MainTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+		<item name="bottomNavigationStyle">@style/LinguaTabBar</item>
+	</style>
+
+	<style name="LinguaTabBar" parent="Widget.MaterialComponents.BottomNavigationView">
+		<item name="itemIconSize">0dp</item>
+		<item name="labelVisibilityMode">labeled</item>
+		<item name="android:textSize">32sp</item>
+	</style>
+
+</resources>
