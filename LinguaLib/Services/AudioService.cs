@@ -19,9 +19,13 @@ public class AudioService
         {
             var stream = await FileSystem.OpenAppPackageFileAsync(resourceName);
             var player = _audioManager.CreatePlayer(stream);
+            player.PlaybackEnded += (s, e) => player.Dispose();
             player.Play();
         }
-        catch { /* ignore missing audio files */ }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"PlaySoundAsync error: {ex.Message}");
+        }
     }
 
     public async Task ToggleBackgroundMusicAsync(string resourceName)
@@ -29,9 +33,12 @@ public class AudioService
         if (_bgPlaying)
         {
             _bgPlayer?.Stop();
+            _bgPlayer?.Dispose();
+            _bgPlayer = null;
             _bgPlaying = false;
             return;
         }
+
         try
         {
             var stream = await FileSystem.OpenAppPackageFileAsync(resourceName);
@@ -40,7 +47,10 @@ public class AudioService
             _bgPlayer.Play();
             _bgPlaying = true;
         }
-        catch { /* ignore */ }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"ToggleBackgroundMusicAsync error: {ex.Message}");
+        }
     }
 
     public bool IsBackgroundPlaying => _bgPlaying;
@@ -48,6 +58,8 @@ public class AudioService
     public void StopBackground()
     {
         _bgPlayer?.Stop();
+        _bgPlayer?.Dispose();
+        _bgPlayer = null;
         _bgPlaying = false;
     }
 }

@@ -17,7 +17,7 @@
     </Shell.Resources>
 
     <TabBar>
-        <ShellContent Title="Library" Route="LibraryPage"
+        <ShellContent Title="📚" Route="LibraryPage"
                       ContentTemplate="{DataTemplate views:LibraryPage}"/>
         
         <ShellContent Title="📖" Route="DictionaryPage"

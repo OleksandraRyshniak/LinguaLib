@@ -42,14 +42,7 @@ public partial class SettingsPage : ContentPage
         // Sound
         stack.Add(MakeToggleCard(L, "[SoundEnabled]", null, "🔊", nameof(_vm.IsSoundEnabled)));
 
-        // Music
-        stack.Add(MakeCard(L["Music"], content =>
-        {
-            var btn = new Button { BackgroundColor = Primary, TextColor = Colors.White, CornerRadius = 8, HeightRequest = 44 };
-            btn.SetBinding(Button.TextProperty, nameof(_vm.MusicButtonText));
-            btn.SetBinding(Button.CommandProperty, nameof(_vm.ToggleMusicCommand));
-            content.Add(btn);
-        }));
+        
 
         scroll.Content = stack;
         Content = scroll;
